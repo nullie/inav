@@ -89,7 +89,7 @@ extern uint8_t __config_end;
 #define FILE_COMPILE_FOR_SPEED
 #endif
 
-#if defined(CONFIG_IN_RAM) || defined(CONFIG_IN_EXTERNAL_FLASH)
+#if defined(CONFIG_IN_RAM) || defined(CONFIG_IN_EXTERNAL_FLASH) || defined(CONFIG_IN_FILE)
 #ifndef EEPROM_SIZE
 #define EEPROM_SIZE     8192
 #endif

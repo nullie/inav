@@ -133,7 +133,9 @@ PG_RESET_TEMPLATE(rxConfig_t, rxConfig,
 #ifdef USE_SPEKTRUM_BIND
     .spektrum_sat_bind = SETTING_SPEKTRUM_SAT_BIND_DEFAULT,
 #endif
+#ifdef USE_SERIAL_RX
     .serialrx_inverted = SETTING_SERIALRX_INVERTED_DEFAULT,
+#endif
     .mincheck = SETTING_MIN_CHECK_DEFAULT,
     .maxcheck = SETTING_MAX_CHECK_DEFAULT,
     .rx_min_usec = SETTING_RX_MIN_USEC_DEFAULT,          // any of first 4 channels below this value will trigger rx loss detection

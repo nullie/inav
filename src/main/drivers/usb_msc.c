@@ -23,5 +23,9 @@
 
 bool mscCheckBoot(void)
 {
+#ifdef USE_PERSISTENT_OBJECTS
     return (persistentObjectRead(PERSISTENT_OBJECT_RESET_REASON) == RESET_MSC_REQUEST);
+#else
+    return false;
+#endif
 }

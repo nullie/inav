@@ -74,10 +74,6 @@ bool fakeGyroDetect(gyroDev_t *gyro)
     gyro->gyroAlign = 0;
     return true;
 }
-#endif // USE_FAKE_GYRO
-
-
-#ifdef USE_FAKE_ACC
 
 static int16_t fakeAccData[XYZ_AXIS_COUNT];
 
@@ -108,5 +104,5 @@ bool fakeAccDetect(accDev_t *acc)
     acc->accAlign = 0;
     return true;
 }
-#endif // USE_FAKE_ACC
+#endif // USE_IMU_FAKE
 

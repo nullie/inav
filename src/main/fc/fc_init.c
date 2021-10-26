@@ -703,8 +703,10 @@ void init(void)
     powerLimiterInit();
 #endif
 
+#ifndef SIMULATOR_BUILD
     // Considering that the persistent reset reason is only used during init
     persistentObjectWrite(PERSISTENT_OBJECT_RESET_REASON, RESET_NONE);
+#endif
 
     systemState |= SYSTEM_STATE_READY;
 }

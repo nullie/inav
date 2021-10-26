@@ -1460,6 +1460,7 @@ static bool mspFcProcessOutCommand(uint16_t cmdMSP, sbuf_t *dst, mspPostProcessF
         }
         break;
 
+#ifdef USE_VTX_COMMON
     case MSP_VTX_CONFIG:
         {
             vtxDevice_t *vtxDevice = vtxCommonDevice();
@@ -1488,6 +1489,7 @@ static bool mspFcProcessOutCommand(uint16_t cmdMSP, sbuf_t *dst, mspPostProcessF
             }
         }
         break;
+#endif
 
     case MSP_NAME:
         {
@@ -1608,6 +1610,7 @@ static bool mspFcProcessOutCommand(uint16_t cmdMSP, sbuf_t *dst, mspPostProcessF
     return true;
 }
 
+#ifdef USE_SAFE_HOME
 static mspResult_e mspFcSafeHomeOutCommand(sbuf_t *dst, sbuf_t *src)
 {
     const uint8_t safe_home_no = sbufReadU8(src);    // get the home number
@@ -1621,6 +1624,7 @@ static mspResult_e mspFcSafeHomeOutCommand(sbuf_t *dst, sbuf_t *src)
          return MSP_RESULT_ERROR;
     }
 }
+#endif
 
 #ifdef USE_NAV
 static void mspFcWaypointOutCommand(sbuf_t *dst, sbuf_t *src)
@@ -2507,6 +2511,7 @@ static mspResult_e mspFcProcessInCommand(uint16_t cmdMSP, sbuf_t *src)
         break;
 #endif // USE_OSD
 
+#ifdef USE_VTX_COMMON
     case MSP_SET_VTX_CONFIG:
         if (dataSize >= 2) {
             vtxDevice_t *vtxDevice = vtxCommonDevice();
@@ -2540,6 +2545,7 @@ static mspResult_e mspFcProcessInCommand(uint16_t cmdMSP, sbuf_t *src)
             return MSP_RESULT_ERROR;
         }
         break;
+#endif
 
 #ifdef USE_FLASHFS
     case MSP_DATAFLASH_ERASE:
@@ -3059,6 +3065,8 @@ static mspResult_e mspFcProcessInCommand(uint16_t cmdMSP, sbuf_t *src)
         return MSP_RESULT_ERROR; // will only be reached if the rollback is not ready
         break;
 #endif
+
+#ifdef USE_SAFE_HOME
     case MSP2_INAV_SET_SAFEHOME:
         if (dataSize == 10) {
              uint8_t i;
@@ -3072,6 +3080,7 @@ static mspResult_e mspFcProcessInCommand(uint16_t cmdMSP, sbuf_t *src)
             return MSP_RESULT_ERROR;
         }
         break;
+#endif
 
     default:
         return MSP_RESULT_ERROR;
@@ -3375,9 +3384,11 @@ bool mspFCProcessInOutCommand(uint16_t cmdMSP, sbuf_t *dst, sbuf_t *src, mspResu
         break;
 #endif
 
+#ifdef USE_SAFE_HOME
     case MSP2_INAV_SAFEHOME:
          *ret = mspFcSafeHomeOutCommand(dst, src);
          break;
+#endif
 
     default:
         // Not handled

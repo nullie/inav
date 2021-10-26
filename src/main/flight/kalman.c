@@ -23,7 +23,6 @@
 FILE_COMPILE_FOR_SPEED
 
 #include <string.h>
-#include "arm_math.h"
 
 #include "kalman.h"
 #include "build/debug.h"
@@ -93,8 +92,7 @@ static void updateAxisVariance(kalman_t *kalmanState, float rate)
     kalmanState->axisMean = kalmanState->axisSumMean * kalmanState->inverseN;
     kalmanState->axisVar = kalmanState->axisSumVar * kalmanState->inverseN;
 
-    float squirt;
-    arm_sqrt_f32(kalmanState->axisVar, &squirt);
+    float squirt = fast_fsqrtf(kalmanState->axisVar);
     kalmanState->r = squirt * VARIANCE_SCALE;
 }
 

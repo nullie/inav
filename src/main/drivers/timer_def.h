@@ -84,6 +84,8 @@
     #include "timer_def_stm32f7xx.h"
 #elif defined(STM32H7)
     #include "timer_def_stm32h7xx.h"
+#elif defined(SIMULATOR_BUILD)
+    // Nop
 #else
     #error "Unknown CPU defined"
 #endif

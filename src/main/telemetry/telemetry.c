@@ -68,9 +68,13 @@ PG_RESET_TEMPLATE(telemetryConfig_t, telemetryConfig,
     .report_cell_voltage = SETTING_REPORT_CELL_VOLTAGE_DEFAULT,
     .hottAlarmSoundInterval = SETTING_HOTT_ALARM_SOUND_INTERVAL_DEFAULT,
     .halfDuplex = SETTING_TELEMETRY_HALFDUPLEX_DEFAULT,
+#ifdef USE_TELEMETRY_SMARTPORT
     .smartportFuelUnit = SETTING_SMARTPORT_FUEL_UNIT_DEFAULT,
+#endif
     .ibusTelemetryType = SETTING_IBUS_TELEMETRY_TYPE_DEFAULT,
+#ifdef USE_TELEMETRY_LTM
     .ltmUpdateRate = SETTING_LTM_UPDATE_RATE_DEFAULT,
+#endif
 
 #ifdef USE_TELEMETRY_SIM
     .simTransmitInterval = SETTING_SIM_TRANSMIT_INTERVAL_DEFAULT,
